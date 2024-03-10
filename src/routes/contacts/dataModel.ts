@@ -2,6 +2,7 @@ import localforage from "localforage";
 import { matchSorter } from "match-sorter";
 import sortBy from "sort-by";
 import { ContactType } from "./type";
+import { getRandomId } from "@/lib/utils";
 
 // fake a cache so we don't slow down stuff we have already seen.
 let fakeCache: Record<string, boolean | undefined> = {};
@@ -37,7 +38,7 @@ export async function getContacts(query?: string) {
 
 export async function createContact() {
   await fakeNetwork();
-  const id = Math.random().toString(36).substring(2, 9);
+  const id = getRandomId();
   const contact = { id, createdAt: Date.now() };
   const contacts = await getContacts();
   contacts.unshift(contact);

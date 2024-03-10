@@ -4,6 +4,8 @@ import "./index.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Root from "./routes/root";
 import Contacts from "./routes/contacts/page";
+import { ThemeProvider } from "./components/theme-provider";
+import Navigation from "./routes/navigation/page";
 
 const router = createBrowserRouter([
   {
@@ -14,10 +16,16 @@ const router = createBrowserRouter([
     path: "/contacts",
     element: <Contacts />,
   },
+  {
+    path: "/navigation",
+    element: <Navigation />,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+      <RouterProvider router={router} />
+    </ThemeProvider>
   </React.StrictMode>
 );

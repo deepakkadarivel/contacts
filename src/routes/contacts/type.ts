@@ -1,6 +1,6 @@
 export interface ContactType {
   id: string;
-  createdAt: number;
+  createdAt?: number;
   //   first: string;
-  //   name: string;
+  name?: string;
 }
