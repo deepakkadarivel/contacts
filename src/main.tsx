@@ -6,11 +6,13 @@ import Root from "./routes/root";
 import Contacts from "./routes/contacts/page";
 import { ThemeProvider } from "./components/theme-provider";
 import Navigation from "./routes/navigation/page";
+import ErrorPage from "./routes/error-page";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
+    errorElement: <ErrorPage />,
   },
   {
     path: "/contacts",
