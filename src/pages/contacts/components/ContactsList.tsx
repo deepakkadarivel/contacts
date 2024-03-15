@@ -1,8 +1,9 @@
 import { cn, getInitials } from "@/lib/utils";
 import { ContactType } from "../type";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
+import { Link } from "react-router-dom";
 
 function ContactsList({
   className,
@@ -16,19 +17,20 @@ function ContactsList({
       <ScrollArea className="h-full">
         <ul>
           {contacts?.map((contact) => (
-            <div key={contact.id}>
+            <Link to={`/contacts/${contact.id}`} key={contact.id}>
               <li className="px-4 py-2 hover:bg-primary-foreground cursor-pointer hover:text-primary">
                 <div className="flex items-center gap-2">
                   <Avatar className="h-8 w-8">
+                    <AvatarImage src={contact.avatar} />
                     <AvatarFallback className="text-xs">
-                      {getInitials(contact.name)}
+                      {getInitials(contact.first)}
                     </AvatarFallback>
                   </Avatar>
-                  <a href={`/contacts/${contact.id}`}>{contact.name}</a>
+                  <p>{contact.first}</p>
                 </div>
               </li>
               <Separator />
-            </div>
+            </Link>
           ))}
         </ul>
       </ScrollArea>

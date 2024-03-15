@@ -2,12 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import Root from "./routes/app-layout";
-import Contacts from "./routes/contacts/page";
+import Root from "./pages/app-layout";
+import Contacts from "./pages/contacts/page";
 import { ThemeProvider } from "./components/theme-provider";
-import Navigation from "./routes/navigation/page";
-import ErrorPage from "./routes/error-page";
-import HomePage from "./routes/home/page";
+import Navigation from "./pages/navigation/page";
+import ErrorPage from "./pages/error-page";
+import HomePage from "./pages/home/page";
+import Contact from "./pages/contacts/contact/page";
+import { contactsLoader } from "./pages/contacts/loader";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +24,13 @@ const router = createBrowserRouter([
       {
         path: "/contacts",
         element: <Contacts />,
+        loader: contactsLoader,
+        children: [
+          {
+            path: "/contacts/:contactId",
+            element: <Contact />,
+          },
+        ],
       },
       {
         path: "/navigation",
