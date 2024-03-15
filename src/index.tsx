@@ -9,7 +9,8 @@ import Navigation from "./pages/navigation/page";
 import ErrorPage from "./pages/error-page";
 import HomePage from "./pages/home/page";
 import Contact from "./pages/contacts/contact/page";
-import { contactsLoader } from "./pages/contacts/loader";
+import { contactLoader, contactsLoader } from "./pages/contacts/loader";
+import { contactNewAction } from "./pages/contacts/components/actions";
 
 const router = createBrowserRouter([
   {
@@ -25,10 +26,12 @@ const router = createBrowserRouter([
         path: "/contacts",
         element: <Contacts />,
         loader: contactsLoader,
+        action: contactNewAction,
         children: [
           {
             path: "/contacts/:contactId",
             element: <Contact />,
+            loader: contactLoader,
           },
         ],
       },

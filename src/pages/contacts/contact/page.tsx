@@ -1,5 +1,5 @@
-import { Form } from "react-router-dom";
-import { ContactWrapperType } from "../type";
+import { Form, useLoaderData } from "react-router-dom";
+import { ContactLoaderData, ContactWrapperType } from "../type";
 
 function Favorite({ contact }: { contact: ContactWrapperType }) {
   // yes, this is a `let` for later
@@ -18,26 +18,33 @@ function Favorite({ contact }: { contact: ContactWrapperType }) {
 }
 
 function Contact() {
-  const contact = {
-    first: "Your",
-    last: "Name",
-    avatar: "https://i.pravatar.cc/300",
-    twitter: "your_handle",
-    notes: "Some notes",
-    favorite: true,
-  };
+  // const contact = {
+  //   first: "Your",
+  //   last: "Name",
+  //   avatar: "https://i.pravatar.cc/300",
+  //   twitter: "your_handle",
+  //   notes: "Some notes",
+  //   favorite: true,
+  // };
+
+  const defaultAvatar = "https://i.pravatar.cc/300";
+
+  const { contact } = useLoaderData() as ContactLoaderData;
 
   return (
     <div id="contact">
       <div>
-        <img key={contact.avatar} src={contact.avatar} />
+        <img
+          key={contact?.avatar ?? defaultAvatar}
+          src={contact?.avatar ?? defaultAvatar}
+        />
       </div>
 
       <div>
         <h1>
-          {contact.first || contact.last ? (
+          {contact?.first ?? contact?.last ? (
             <>
-              {contact.first} {contact.last}
+              {contact?.first} {contact?.last}
             </>
           ) : (
             <i>No Name</i>
@@ -45,19 +52,19 @@ function Contact() {
           <Favorite contact={contact} />
         </h1>
 
-        {contact.twitter && (
+        {contact?.twitter && (
           <p>
             <a
               target="_blank"
-              href={`https://twitter.com/${contact.twitter}`}
+              href={`https://twitter.com/${contact?.twitter}`}
               rel="noreferrer"
             >
-              {contact.twitter}
+              {contact?.twitter}
             </a>
           </p>
         )}
 
-        {contact.notes && <p>{contact.notes}</p>}
+        {contact?.notes && <p>{contact?.notes}</p>}
 
         <div>
           <Form action="edit">

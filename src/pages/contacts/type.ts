@@ -1,10 +1,10 @@
 export interface ContactWrapperType {
-  first: string;
+  first?: string;
   last?: string;
   avatar?: string;
   twitter?: string;
   notes?: string;
-  favorite: boolean;
+  favorite?: boolean;
 }
 
 export interface ContactType extends ContactWrapperType {
@@ -14,4 +14,8 @@ export interface ContactType extends ContactWrapperType {
 
 export interface ContactsLoaderData {
   contacts: ContactType[];
+}
+
+export interface ContactLoaderData {
+  contact: ContactType;
 }

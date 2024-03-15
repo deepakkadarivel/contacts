@@ -23,10 +23,10 @@ function ContactsList({
                   <Avatar className="h-8 w-8">
                     <AvatarImage src={contact.avatar} />
                     <AvatarFallback className="text-xs">
-                      {getInitials(contact.first)}
+                      {getInitials(contact.first ?? "No Name")}
                     </AvatarFallback>
                   </Avatar>
-                  <p>{contact.first}</p>
+                  <p>{contact.first ?? "No Name"}</p>
                 </div>
               </li>
               <Separator />

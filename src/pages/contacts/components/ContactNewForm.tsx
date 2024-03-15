@@ -1,10 +1,11 @@
 import { Button } from "@/components/ui/button";
+import { Form } from "react-router-dom";
 
 function ContactNewForm() {
   return (
-    <form method="post">
+    <Form method="post">
       <Button type="submit">New</Button>
-    </form>
+    </Form>
   );
 }
 
