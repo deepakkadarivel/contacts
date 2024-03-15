@@ -1,7 +1,7 @@
 import localforage from "localforage";
 import { matchSorter } from "match-sorter";
 import sortBy from "sort-by";
-import { ContactType } from "./type";
+import { ContactType, ContactWrapperType } from "./type";
 import { getRandomId } from "@/lib/utils";
 
 // fake a cache so we don't slow down stuff we have already seen.
@@ -53,7 +53,10 @@ export async function getContact(id: string) {
   return contact ?? null;
 }
 
-export async function updateContact(id: string, contactUpdate: ContactType) {
+export async function updateContact(
+  id: string,
+  contactUpdate: ContactWrapperType
+) {
   await fakeNetwork();
   const contacts = await getContacts();
   const contact = contacts?.find((contact) => contact.id === id);

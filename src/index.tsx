@@ -10,7 +10,11 @@ import ErrorPage from "./pages/error-page";
 import HomePage from "./pages/home/page";
 import Contact from "./pages/contacts/contact/page";
 import { contactLoader, contactsLoader } from "./pages/contacts/loader";
-import { contactNewAction } from "./pages/contacts/components/actions";
+import {
+  contactUpdateAction,
+  contactNewAction,
+} from "./pages/contacts/components/actions";
+import ContactEditForm from "./pages/contacts/components/ContactEditForm";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +36,17 @@ const router = createBrowserRouter([
             path: "/contacts/:contactId",
             element: <Contact />,
             loader: contactLoader,
+          },
+          {
+            path: "/contacts/new",
+            element: <ContactEditForm />,
+            action: contactUpdateAction,
+          },
+          {
+            path: "/contacts/:contactId/edit",
+            element: <ContactEditForm />,
+            loader: contactLoader,
+            action: contactUpdateAction,
           },
         ],
       },
