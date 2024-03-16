@@ -2,7 +2,8 @@ import { Form, useLoaderData } from "react-router-dom";
 import { ContactLoaderData } from "../type";
 
 export default function ContactEditForm() {
-  const { contact } = useLoaderData() as ContactLoaderData;
+  const data = useLoaderData() as ContactLoaderData;
+  const contact = data?.contact;
 
   return (
     <Form method="post" id="contact-form">

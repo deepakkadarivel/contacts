@@ -36,14 +36,14 @@ export async function getContacts(query?: string) {
   return contacts.sort(sortBy("last", "createdAt"));
 }
 
-export async function createContact() {
+export async function createContact(contact: ContactWrapperType) {
   await fakeNetwork();
   const id = getRandomId();
-  const contact = { id, createdAt: Date.now() };
+  const newContact = { id, createdAt: Date.now(), ...contact };
   const contacts = await getContacts();
-  contacts.unshift(contact);
+  contacts.unshift(newContact);
   await set(contacts);
-  return contact;
+  return newContact;
 }
 
 export async function getContact(id: string) {

@@ -12,7 +12,7 @@ import Contact from "./pages/contacts/contact/page";
 import { contactLoader, contactsLoader } from "./pages/contacts/loader";
 import {
   contactUpdateAction,
-  contactNewAction,
+  contactCreateAction,
 } from "./pages/contacts/components/actions";
 import ContactEditForm from "./pages/contacts/components/ContactEditForm";
 
@@ -30,7 +30,6 @@ const router = createBrowserRouter([
         path: "/contacts",
         element: <Contacts />,
         loader: contactsLoader,
-        action: contactNewAction,
         children: [
           {
             path: "/contacts/:contactId",
@@ -40,7 +39,7 @@ const router = createBrowserRouter([
           {
             path: "/contacts/new",
             element: <ContactEditForm />,
-            action: contactUpdateAction,
+            action: contactCreateAction,
           },
           {
             path: "/contacts/:contactId/edit",

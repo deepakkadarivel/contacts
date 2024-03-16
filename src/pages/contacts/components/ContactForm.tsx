@@ -1,6 +1,8 @@
 import { cn } from "@/lib/utils";
-import ContactNewForm from "./ContactNewForm";
+// import ContactNewForm from "./ContactNewForm";
 import ContactSearchForm from "./ContactSearchForm";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 function ContactsForm({ className }: { className?: string }) {
   return (
@@ -11,7 +13,10 @@ function ContactsForm({ className }: { className?: string }) {
       )}
     >
       <ContactSearchForm />
-      <ContactNewForm />
+      {/* <ContactNewForm /> */}
+      <Button asChild className="w-fit">
+        <Link to="/contacts/new">New</Link>
+      </Button>
     </div>
   );
 }
