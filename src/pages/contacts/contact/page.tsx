@@ -1,5 +1,7 @@
-import { Form, useLoaderData } from "react-router-dom";
+import { Form, Link, useLoaderData } from "react-router-dom";
 import { ContactLoaderData, ContactWrapperType } from "../type";
+import { Button } from "@/components/ui/button";
+import { Twitter } from "lucide-react";
 
 function Favorite({ contact }: { contact: ContactWrapperType }) {
   // yes, this is a `let` for later
@@ -32,16 +34,15 @@ function Contact() {
   const { contact } = useLoaderData() as ContactLoaderData;
 
   return (
-    <div id="contact">
-      <div>
-        <img
-          key={contact?.avatar ?? defaultAvatar}
-          src={contact?.avatar ?? defaultAvatar}
-        />
-      </div>
+    <div id="contact" className="flex gap-4 container p-4">
+      <img
+        className="size-128 rounded-xl"
+        key={contact?.avatar ?? defaultAvatar}
+        src={contact?.avatar ?? defaultAvatar}
+      />
 
       <div>
-        <h1>
+        <h1 className="flex gap-2 text-2xl font-medium">
           {contact?.first ?? contact?.last ? (
             <>
               {contact?.first} {contact?.last}
@@ -53,22 +54,27 @@ function Contact() {
         </h1>
 
         {contact?.twitter && (
-          <p>
-            <a
+          <Button variant="link" className="space-x-2 p-0">
+            <Twitter />
+            <Link
               target="_blank"
-              href={`https://twitter.com/${contact?.twitter}`}
+              to={`https://twitter.com/${contact?.twitter}`}
               rel="noreferrer"
             >
               {contact?.twitter}
-            </a>
-          </p>
+            </Link>
+          </Button>
         )}
 
-        {contact?.notes && <p>{contact?.notes}</p>}
+        {contact?.notes && (
+          <p className="line-clamp-3 mt-8 text-sm">{contact?.notes}</p>
+        )}
 
-        <div>
+        <div className="flex gap-2 mt-8">
           <Form action="edit">
-            <button type="submit">Edit</button>
+            <Button type="submit" size="sm">
+              Edit
+            </Button>
           </Form>
           <Form
             method="post"
@@ -79,7 +85,9 @@ function Contact() {
               }
             }}
           >
-            <button type="submit">Delete</button>
+            <Button type="submit" variant="destructive" size="sm">
+              Delete
+            </Button>
           </Form>
         </div>
       </div>
