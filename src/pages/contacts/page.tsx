@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Separator } from "@/components/ui/separator";
 // import { getRandomId } from "@/lib/utils";
-import { Contact } from "lucide-react";
+import { Contact, Loader2 } from "lucide-react";
 import { ContactsLoaderData } from "./type";
 // import { randomUser } from "random-user-data";
 import ContactsForm from "./components/ContactForm";
 import ContactsList from "./components/ContactsList";
-import { Outlet, useLoaderData } from "react-router-dom";
+import { Outlet, useLoaderData, useNavigation } from "react-router-dom";
 // import { getContacts } from "./dataModel";
 
 // const contacts: ContactType[] = Array(20)
@@ -20,6 +20,7 @@ import { Outlet, useLoaderData } from "react-router-dom";
 
 function Contacts() {
   const { contacts } = useLoaderData() as ContactsLoaderData;
+  const navigation = useNavigation();
   return (
     <>
       <div className="flex flex-col overflow-hidden h-screen">
@@ -40,7 +41,7 @@ function Contacts() {
           </aside>
           <Separator orientation="vertical" />
           <section className="flex-1 h-full">
-            <Outlet />
+            {navigation.state === "loading" ? <Loader2 /> : <Outlet />}
           </section>
         </main>
       </div>

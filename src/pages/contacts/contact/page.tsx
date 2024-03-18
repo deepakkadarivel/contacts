@@ -35,11 +35,13 @@ function Contact() {
 
   return (
     <div id="contact" className="flex gap-4 container p-4">
-      <img
-        className="size-128 rounded-xl"
-        key={contact?.avatar ?? defaultAvatar}
-        src={contact?.avatar ?? defaultAvatar}
-      />
+      <div className="size-48">
+        <img
+          className="size-full rounded-xl"
+          key={contact?.avatar ?? defaultAvatar}
+          src={contact?.avatar ?? defaultAvatar}
+        />
+      </div>
 
       <div>
         <h1 className="flex gap-2 text-2xl font-medium">

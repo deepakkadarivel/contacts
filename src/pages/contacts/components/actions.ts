@@ -1,5 +1,5 @@
 import { Params, redirect } from "react-router-dom";
-import { createContact, updateContact } from "../dataModel";
+import { createContact, deleteContact, updateContact } from "../dataModel";
 
 export async function contactCreateAction({ request }: { request: Request }) {
   const formData = await request.formData();
@@ -19,5 +19,12 @@ export async function contactUpdateAction({
   if (params.contactId) {
     await updateContact(params.contactId, update);
     return redirect(`/contacts/${params.contactId}`);
+  }
+}
+
+export async function contactDeleteAction({ params }: { params: Params }) {
+  if (params.contactId) {
+    await deleteContact(params.contactId);
+    return redirect("/contacts");
   }
 }
