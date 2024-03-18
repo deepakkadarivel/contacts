@@ -31,14 +31,13 @@ function messageByStatus(error: unknown) {
             "We apologize, but it seems that the page you are looking for could not be found.",
         };
     }
-
-    return {
-      status: `Unexpected ERROR`,
-      message: "Oops... Something went wrong",
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-      description: error?.data?.message ?? "",
-    };
   }
+  return {
+    status: `Unexpected ERROR`,
+    message: "Oops... Something went wrong",
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+    description: "",
+  };
 }
 
 function ErrorBody() {
