@@ -16,6 +16,7 @@ import {
   contactDeleteAction,
 } from "./pages/contacts/components/actions";
 import ContactEditForm from "./pages/contacts/components/ContactEditForm";
+import DefaultPage from "./pages/contacts/default";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
         element: <Contacts />,
         loader: contactsLoader,
         children: [
+          {
+            index: true,
+            element: <DefaultPage />,
+          },
           {
             path: "/contacts/:contactId",
             element: <Contact />,
