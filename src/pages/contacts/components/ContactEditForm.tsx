@@ -1,4 +1,4 @@
-import { Form, useLoaderData } from "react-router-dom";
+import { Form, useLoaderData, useNavigate } from "react-router-dom";
 import { ContactLoaderData } from "../type";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 export default function ContactEditForm() {
   const data = useLoaderData() as ContactLoaderData;
   const contact = data?.contact;
+  const navigate = useNavigate();
 
   return (
     <Form method="post" id="contact-form" className="space-y-4">
@@ -47,7 +48,13 @@ export default function ContactEditForm() {
 
       <div className="space-x-4">
         <Button type="submit">Save</Button>
-        <Button type="button" variant="secondary">
+        <Button
+          type="button"
+          variant="secondary"
+          onClick={() => {
+            navigate(-1);
+          }}
+        >
           Cancel
         </Button>
       </div>
