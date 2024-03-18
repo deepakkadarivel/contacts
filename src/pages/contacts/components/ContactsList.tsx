@@ -3,7 +3,7 @@ import { ContactType } from "../type";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function ContactsList({
   className,
@@ -17,8 +17,19 @@ function ContactsList({
       <ScrollArea className="h-full">
         <ul>
           {contacts?.map((contact) => (
-            <Link to={`/contacts/${contact.id}`} key={contact.id}>
-              <li className="px-4 py-2 hover:bg-primary-foreground cursor-pointer hover:text-primary">
+            <NavLink
+              to={`/contacts/${contact.id}`}
+              key={contact.id}
+              className={({ isActive, isPending }) =>
+                [
+                  isActive
+                    ? "bg-primary text-white"
+                    : "hover:bg-primary-foreground cursor-pointer hover:text-primary",
+                  isPending ? "bg-muted" : "",
+                ].join(" block")
+              }
+            >
+              <li className="px-4 py-2 ">
                 <div className="flex items-center gap-2">
                   <Avatar className="h-8 w-8">
                     <AvatarImage src={contact.avatar} />
@@ -30,7 +41,7 @@ function ContactsList({
                 </div>
               </li>
               <Separator />
-            </Link>
+            </NavLink>
           ))}
         </ul>
       </ScrollArea>

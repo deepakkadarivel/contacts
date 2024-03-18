@@ -4,7 +4,7 @@ import { ModeToggle } from "./mode-toggle";
 
 function AppNav() {
   return (
-    <nav className="h-16 flex justify-between items-center border-b px-4">
+    <nav className="h-16 flex justify-between items-center border-b px-4 bg-background/95 backdrop-blur">
       <div>
         <Link to="/" className="flex items-center gap-4">
           <Triangle size={36} className="text-primary" />
